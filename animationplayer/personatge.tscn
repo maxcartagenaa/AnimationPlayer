@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=3 uid="uid://djrftdlchoxu"]
+
+[ext_resource type="Texture2D" uid="uid://cuyhodbbibmxq" path="res://TungSahur.png" id="1_5loqs"]
+[ext_resource type="Script" uid="uid://crdk5ch4ktrl4" path="res://personatge.gd" id="1_ed0ax"]
+[ext_resource type="Script" uid="uid://dkgrw8wijmn5w" path="res://animation_player.gd" id="2_fy3p2"]
+[ext_resource type="Texture2D" uid="uid://bugaivjdepesv" path="res://camp_beisbol.jpg" id="2_r8tuf"]
+[ext_resource type="Texture2D" uid="uid://q05we3f4gfg1" path="res://boto.png" id="4_ed0ax"]
+
+[sub_resource type="Animation" id="Animation_ed0ax"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TungSahur:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TungSahur:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TungSahur:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(243, 206)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TungSahur:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fy3p2"]
+resource_name = "animacio"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TungSahur:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(567, 466), Vector2(895, 213), Vector2(577, 83), Vector2(243, 206), Vector2(567, 448)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TungSahur:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.757332, 0.0234546]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TungSahur:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.93333, 2, 2.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.0313726), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TungSahur:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0666667, 3, 3.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_no8j7"]
+_data = {
+&"RESET": SubResource("Animation_ed0ax"),
+&"animacio": SubResource("Animation_fy3p2")
+}
+
+[node name="Personatge" type="Node2D"]
+position = Vector2(0, 2)
+script = ExtResource("1_ed0ax")
+
+[node name="TungSahur" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(243, 206)
+scale = Vector2(0.697368, 0.560329)
+texture = ExtResource("1_5loqs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_no8j7")
+}
+script = ExtResource("2_fy3p2")
+
+[node name="CampBeisbol" type="Sprite2D" parent="."]
+position = Vector2(578, 325)
+scale = Vector2(1.84904, 1.03994)
+texture = ExtResource("2_r8tuf")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 463.0
+offset_top = 176.0
+offset_right = 823.0
+offset_bottom = 536.0
+scale = Vector2(0.643551, 0.516009)
+texture_normal = ExtResource("4_ed0ax")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 83.9095
+offset_top = 118.215
+offset_right = 132.91
+offset_bottom = 141.215
+scale = Vector2(3.99982, 4.36364)
+text = "CLICA!"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_boto_pressed"]
